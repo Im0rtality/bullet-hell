@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
-	public Rigidbody bulletTemplate;
+	public List<Rigidbody> templates = new List<Rigidbody> ();
+	public float interval = 2;
+	public float area = 15;
 
-	// Update is called once per frame
 	void Start ()
 	{
-		InvokeRepeating ("LaunchProjectile", 2, 0.3f);
+		InvokeRepeating ("LaunchProjectile", 0f, interval + Random.Range (-0.5f, 0.5f));
 	}
 
 	void LaunchProjectile ()
 	{
-		float theta = Time.frameCount;
+		Rigidbody potatoe = Instantiate (
+			                    (templates [Random.Range (0, templates.Count)]).GetComponent<Rigidbody> (), 
+			                    area * Random.onUnitSphere + transform.position, 
+			                    Quaternion.identity
+		                    ) as Rigidbody;
 
-		Instantiate (
-			bulletTemplate, 
-			new Vector3 (
-				Mathf.Sin (theta) * 0.5f,
-				0f,
-				Mathf.Cos (theta) * 0.5f
-			) + transform.position, 
-			Quaternion.identity
-		);
+		potatoe.AddTorque (Random.rotation.eulerAngles * Random.Range (-2f, 2f));
 	}
 }
