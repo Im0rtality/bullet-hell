@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletController : MonoBehaviour
+public class AsteroidController : MonoBehaviour
 {
-	public GameObject spawner;
 	private GameObject player;
 	public Gradient g;
-	public float speed = 2.0f;
 	public float dangerZone = 20f;
 
 	void Start ()
@@ -16,8 +14,6 @@ public class BulletController : MonoBehaviour
 
 	void Update ()
 	{
-		transform.Rotate(Vector3.up, speed * Time.deltaTime);
-
 		Color cl;
 		float distance = Vector3.Distance (player.transform.position, gameObject.transform.position);
 		if (distance < dangerZone) {
@@ -34,8 +30,8 @@ public class BulletController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-//		if (Vector3.Distance (spawner.transform.position, transform.position) > 10f) {
-//			Destroy (this);
-//		}
+		if (transform.position.y < 0f) {
+			Destroy (this);
+		}
 	}
 }

@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 		                   );
 			
 		rb.AddForce (movement * speed);
-		print (movement);
 
 //		if (Input.GetAxisRaw ("Horizontal").CompareTo (0) != 0) {
 //			player.AddTorque (new Vector3 (0f, Input.GetAxis ("Horizontal") / 10f, 0f));
