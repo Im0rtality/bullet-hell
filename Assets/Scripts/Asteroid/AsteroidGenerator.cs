@@ -25,15 +25,26 @@ public static class AsteroidGenerator
 		collider.isTrigger = true;
 		collider.sharedMesh = theMesh;
 
-		AsteroidController ctrl = obj.AddComponent<AsteroidController> ();
+		Asteroid ctrl = obj.AddComponent<Asteroid> ();
 		ctrl.dangerZone = 20f;
 		ctrl.g = dangerGrad;
+
+		CleanupRange cleanup = obj.AddComponent<CleanupRange> ();
+		cleanup.allowedRange = 100f;
+
+		ScoreController score = obj.AddComponent<ScoreController> ();
+		score.worth = 10;
+
+		Exploding exploding = obj.AddComponent<Exploding> ();
+		exploding.triggeringTags = new List<string> () { "PlayerBullet" };
+		exploding.explosion = Resources.Load<GameObject> ("Explosions/asteroid_explosion");
+		exploding.sound = Resources.Load<AudioClip> ("Audio/explosion_asteroid");
 
 		Rigidbody rb = obj.AddComponent<Rigidbody> ();
 		rb.mass = 0.2f;
 		rb.drag = 0f;
 		rb.angularDrag = 0f;
-		rb.AddTorque (Random.rotation.eulerAngles * Random.Range (-2f, 2f));
+//		rb.AddTorque (Random.rotation.eulerAngles * Random.Range (-2f, 2f));
 
 		return obj;
 	}

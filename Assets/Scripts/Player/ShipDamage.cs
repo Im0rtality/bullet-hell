@@ -6,7 +6,6 @@ public class ShipDamage : MonoBehaviour
 	public Gradient g;
 	private float lastBump = 0;
 	private Material originalMaterial;
-	public AudioClip explosion2;
 
 	void Start ()
 	{
@@ -26,11 +25,13 @@ public class ShipDamage : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
+		Debug.Log ("Trigger");
 		switch (other.tag) {
 		case "Asteroid":
+		case "Enemy":
 			lastBump = Time.realtimeSinceStartup;
-				//		AudioSource.PlayClipAtPoint (explosion2, transform.position);
-			Object.Destroy (other.gameObject);
+			GameController.gameOver = true;
+			//Object.Destroy (other.gameObject);
 			break;				
 		}
 	}
