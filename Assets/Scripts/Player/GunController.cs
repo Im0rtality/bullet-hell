@@ -3,49 +3,17 @@ using System.Collections;
 
 public class GunController : MonoBehaviour
 {
+	public GameObject shot;
+	public float fireRate;
 
-	private LineRenderer lr;
-
-	void Start ()
-	{
-		lr = GetComponent<LineRenderer> ();
-		lr.enabled = false;
-	}
+	private float nextFire;
 
 	void Update ()
 	{
-		if (Input.GetButtonDown ("Fire1")) {
-			StopCoroutine ("Fire");
-			StartCoroutine ("Fire");
+		if (Input.GetButton ("Fire1") && Time.time > nextFire) {
+			nextFire = Time.time + fireRate;
+			Instantiate (shot, transform.position, transform.rotation);
+			//		GetComponent<AudioSource>().Play ();
 		}
-	}
-
-	IEnumerator Fire ()
-	{
-		lr.enabled = true;
-
-		while (Input.GetButton ("Fire1")) {
-			Ray ray = new Ray (transform.position, transform.forward);
-
-			lr.SetPosition (0, ray.origin);
-
-			RaycastHit hit;
-
-			if (Physics.Raycast (ray, out hit, 100)) {
-				lr.SetPosition (1, hit.point);
-
-				if (hit.rigidbody) {
-					hit.rigidbody.AddForceAtPosition (transform.forward * 5, hit.point);
-				}
-
-			} else {
-				lr.SetPosition (1, ray.GetPoint (100));
-			}
-
-			yield return null;
-		}
-
-		lr.enabled = false;
-
 	}
 }

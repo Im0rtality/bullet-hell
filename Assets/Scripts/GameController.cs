@@ -5,7 +5,8 @@ public class GameController : MonoBehaviour
 {
 	public int spawnerCount;
 
-	void Awake() {
+	void Awake ()
+	{
 //		Application.targetFrameRate = 30;
 	}
 
@@ -19,5 +20,12 @@ public class GameController : MonoBehaviour
 				Quaternion.identity
 			);
 		}
+
+		InvokeRepeating ("CountAsteroids", 0, 5);
+	}
+
+	void CountAsteroids ()
+	{
+		Debug.Log ("Asteroid count: " + GameObject.FindGameObjectsWithTag ("Asteroid").Length);
 	}
 }

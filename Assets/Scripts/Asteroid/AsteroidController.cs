@@ -23,15 +23,8 @@ public class AsteroidController : MonoBehaviour
 		}
 		gameObject.GetComponent<Renderer> ().material.color = cl;
 
-		if (transform.position.y < 0) {
+		if (gameObject.transform.position.y < 0) {
 			Object.Destroy (gameObject);
-		}
-	}
-
-	void FixedUpdate ()
-	{
-		if (transform.position.y < 0f) {
-			Destroy (this);
 		}
 	}
 }

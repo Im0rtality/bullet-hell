@@ -29,6 +29,6 @@ public class ShipDamage : MonoBehaviour
 		lastBump = Time.realtimeSinceStartup;
 		//		AudioSource.PlayClipAtPoint (explosion2, transform.position);
 		Object.Destroy (other.gameObject);
-		print (Time.realtimeSinceStartup - lastBump);
+		print (other);
 	}
 }

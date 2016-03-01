@@ -12,6 +12,7 @@ public static class AsteroidGenerator
 		GameObject obj = new GameObject ("Asteroid");
 		obj.transform.localScale = new Vector3 (0.05f, 0.05f, 0.05f);
 		obj.transform.position = position;
+		obj.tag = "Asteroid";
 
 		MeshFilter filter = obj.AddComponent<MeshFilter> ();
 		filter.mesh = theMesh;

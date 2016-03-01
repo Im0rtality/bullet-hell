@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 	public float speed;
+	public float tilt;
 	private Rigidbody rb;
 
 	void Start ()
@@ -20,12 +21,7 @@ public class PlayerController : MonoBehaviour
 		                   );
 			
 		rb.AddForce (movement * speed);
-
-//		if (Input.GetAxisRaw ("Horizontal").CompareTo (0) != 0) {
-//			player.AddTorque (new Vector3 (0f, Input.GetAxis ("Horizontal") / 10f, 0f));
-//			CancelInvoke ("RestoreYaw");
-//			Invoke ("RestoreYaw", 0.5f);
-//		}
+		rb.rotation = Quaternion.Euler (0.0f, rb.velocity.x * -tilt, 0.0f);
 	}
 
 	void RestoreYaw ()
