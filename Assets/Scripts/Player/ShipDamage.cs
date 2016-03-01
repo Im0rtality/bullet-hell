@@ -26,9 +26,12 @@ public class ShipDamage : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		lastBump = Time.realtimeSinceStartup;
-		//		AudioSource.PlayClipAtPoint (explosion2, transform.position);
-		Object.Destroy (other.gameObject);
-		print (other);
+		switch (other.tag) {
+		case "Asteroid":
+			lastBump = Time.realtimeSinceStartup;
+				//		AudioSource.PlayClipAtPoint (explosion2, transform.position);
+			Object.Destroy (other.gameObject);
+			break;				
+		}
 	}
 }
