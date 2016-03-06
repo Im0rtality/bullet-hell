@@ -7,7 +7,7 @@ public class Weapon: MonoBehaviour
 	public GameObject Bullet;
 	public AudioClip Sound;
 
-	public void Start ()
+	public virtual void Start ()
 	{
 		SpawnPoint = gameObject.transform.Find("GunTip") as Transform;
 	}

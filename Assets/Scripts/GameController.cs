@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
 			);
 		}
 
-		InvokeRepeating ("CountAsteroids", 0, 5);
+		//InvokeRepeating ("CountAsteroids", 0, 5);
 		ScoreManager.score = 0;
 		gameOver = false;
 	}

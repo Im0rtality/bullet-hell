@@ -25,10 +25,10 @@ public class ShipDamage : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("Trigger");
 		switch (other.tag) {
 		case "Asteroid":
 		case "Enemy":
+		case "EnemyBullet":
 			lastBump = Time.realtimeSinceStartup;
 			GameController.gameOver = true;
 			//Object.Destroy (other.gameObject);
