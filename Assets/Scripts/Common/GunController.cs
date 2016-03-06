@@ -3,15 +3,22 @@ using System.Collections;
 
 public class GunController : MonoBehaviour
 {
-	public GameObject bullet;
-	public Transform bulletSpawnPoint;
-	public AudioClip sound;
+	private Weapon ctrl;
+
+	public Weapon getWeapon ()
+	{
+		if (ctrl == null) {
+			ctrl = gameObject.GetComponent<Weapon> ();
+		}
+		return ctrl;
+	}
 
 	public void Fire ()
 	{
-		Instantiate (bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-		if (sound != null) {
-			AudioSource.PlayClipAtPoint (sound, transform.position);
+		if (getWeapon ().CanFire ()) {
+			getWeapon ().InstantiateBullets ();
+
+			getWeapon ().AfterFire ();
 		}
 	}
 }

@@ -7,9 +7,6 @@ public class PlayerController : GunController
 	public float tilt;
 	private Rigidbody rb;
 
-	public float fireRate;
-	private float nextFire;
-
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
@@ -25,9 +22,8 @@ public class PlayerController : GunController
 
 	void Update ()
 	{
-		if (Input.GetButton ("Fire1") && Time.time > nextFire) {
-			nextFire = Time.time + fireRate;
-			Fire ();
+		if (Input.GetButton ("Fire1")) {
+			Fire();
 		}
 	}
 
