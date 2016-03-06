@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 using System.Collections;
 
 public class Overheating: Weapon
@@ -20,8 +22,7 @@ public class Overheating: Weapon
 
 	void Cooling ()
 	{
-		heat = Mathf.Clamp (heat - coolingRate, 0.0f, maxHeat);
-		Debug.Log ("Heat: " + heat);
+		setHeat (Mathf.Clamp (heat - coolingRate, 0.0f, maxHeat));
 	}
 
 	public override bool CanFire ()
@@ -32,6 +33,15 @@ public class Overheating: Weapon
 	public override void AfterFire ()
 	{
 		nextFire = Time.time + fireRate;
-		heat = Mathf.Clamp(heat + bulletHeat, 0, maxHeat);
+		setHeat (Mathf.Clamp (heat + bulletHeat, 0, maxHeat));
+	}
+
+	void setHeat (float value)
+	{
+		heat = value;
+
+		if (ammoSystem) {
+			ammoSystem.AmmoChange (1 - heat / maxHeat);
+		}
 	}
 }

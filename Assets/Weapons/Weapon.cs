@@ -6,10 +6,11 @@ public class Weapon: MonoBehaviour
 	protected Transform SpawnPoint;
 	public GameObject Bullet;
 	public AudioClip Sound;
+	public AmmoSystem ammoSystem;
 
 	public virtual void Start ()
 	{
-		SpawnPoint = gameObject.transform.Find("GunTip") as Transform;
+		SpawnPoint = gameObject.transform.Find ("GunTip") as Transform;
 	}
 
 	public virtual bool CanFire ()
