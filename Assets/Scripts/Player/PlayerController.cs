@@ -14,21 +14,21 @@ public class PlayerController : GunController
 
 	void FixedUpdate ()
 	{
-		Vector3 movement = new Vector3 (Input.GetAxis ("Horizontal"), 0f, -Input.GetAxis ("Vertical"));
+		Vector3 movement = new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"), 0f);
 			
 		rb.AddForce (movement * speed);
-		rb.rotation = Quaternion.Euler (0.0f, rb.velocity.x * -tilt, 0.0f);
+		rb.rotation = Quaternion.Euler (0.0f, 0.0f, rb.velocity.x * -tilt);
 	}
 
 	void Update ()
 	{
 		if (Input.GetButton ("Fire1")) {
-			Fire();
+			Fire ();
 		}
 	}
 
-	void RestoreYaw ()
+	void OnKilled ()
 	{
-		transform.rotation = Quaternion.Euler (new Vector3 (270f, 0f, 0f));
+		GameController.gameOver = true;
 	}
 }

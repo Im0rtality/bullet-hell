@@ -40,8 +40,8 @@ public class Overheating: Weapon
 	{
 		heat = value;
 
-		if (ammoSystem) {
-			ammoSystem.AmmoChange (1 - heat / maxHeat);
+		if (ammo) {
+			ammo.AmmoChange (1 - heat / maxHeat);
 		}
 	}
 }

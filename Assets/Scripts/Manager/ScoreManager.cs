@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-	public static int score;
+	public static float score;
 	public Text scoreText;
 
 	public void Reset ()
@@ -14,6 +14,6 @@ public class ScoreManager : MonoBehaviour
 
 	void Update ()
 	{
-		scoreText.text = "Score: " + score;
+		scoreText.text = "Score: " + Mathf.RoundToInt (score).ToString ();
 	}
 }

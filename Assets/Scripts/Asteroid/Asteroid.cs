@@ -34,7 +34,7 @@ public class Asteroid : MonoBehaviour
 		}
 	}
 
-	void onTriggerPlayerBullet ()
+	void DoExplode ()
 	{
 		ScoreManager.score += 1000;
 	}

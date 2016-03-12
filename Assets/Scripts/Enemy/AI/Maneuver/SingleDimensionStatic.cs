@@ -40,11 +40,11 @@ public class SingleDimensionStatic : MonoBehaviour
 	void FixedUpdate ()
 	{
 		float newManeuver = Mathf.MoveTowards (GetComponent<Rigidbody> ().velocity.x, targetManeuver, smoothing * Time.deltaTime);
-		GetComponent<Rigidbody> ().velocity = new Vector3 (newManeuver, 0.0f, currentSpeed);
+		GetComponent<Rigidbody> ().velocity = new Vector3 (newManeuver, currentSpeed, 0f);
 		GetComponent<Rigidbody> ().position = startPos + new Vector3 (
-			Mathf.Clamp (GetComponent<Rigidbody> ().position.x, boundaryX.min, boundaryX.max), 
-			0.0f, 
-			Mathf.Clamp (GetComponent<Rigidbody> ().position.z, boundaryY.min, boundaryY.max)
+			GetComponent<Rigidbody> ().position.x,
+			GetComponent<Rigidbody> ().position.y,
+			0.0f
 		);
 
 		GetComponent<Rigidbody> ().rotation = Quaternion.Euler (startRot.x, startRot.y, GetComponent<Rigidbody> ().velocity.x * -tilt);

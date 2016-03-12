@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-	public int spawnerCount;
+//	public int spawnerCount;
 	public static bool gameOver;
 	public GameObject gameOverContainer;
 
@@ -16,16 +16,16 @@ public class GameController : MonoBehaviour
 
 	void Start ()
 	{
-		Object spawnerPrefab = Resources.Load ("Spawner") as Object;
-		for (int i = 0; i < spawnerCount; i++) {
-			Instantiate (
-				spawnerPrefab, 
-				transform.position, 
-				Quaternion.identity
-			);
-		}
+//		Object spawnerPrefab = Resources.Load ("Spawner") as Object;
+//		for (int i = 0; i < spawnerCount; i++) {
+//			Instantiate (
+//				spawnerPrefab, 
+//				transform.position, 
+//				Quaternion.identity
+//			);
+//		}
 
-		//InvokeRepeating ("CountAsteroids", 0, 5);
+		InvokeRepeating ("CountAsteroids", 0, 5);
 		ScoreManager.score = 0;
 		gameOver = false;
 	}
@@ -42,6 +42,10 @@ public class GameController : MonoBehaviour
 
 	void CountAsteroids ()
 	{
-		Debug.Log ("Asteroid count: " + GameObject.FindGameObjectsWithTag ("Asteroid").Length);
+		Debug.Log (
+			"\tAsteroids: " + GameObject.FindGameObjectsWithTag ("Asteroid").Length +
+			"\tEnemy Bullets: " + GameObject.FindGameObjectsWithTag ("EnemyBullet").Length +
+			"\tPlayer Bullets: " + GameObject.FindGameObjectsWithTag ("PlayerBullet").Length
+		);
 	}
 }

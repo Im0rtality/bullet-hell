@@ -15,7 +15,6 @@ public class CleanupRange : MonoBehaviour
 	{
 		if (Vector3.Distance (startPos, transform.position) > allowedRange) {
 			Destroy (gameObject);
-			BroadcastMessage ("onCleanupRange");
 		}
 	}
 }

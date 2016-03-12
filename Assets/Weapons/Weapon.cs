@@ -6,7 +6,7 @@ public class Weapon: MonoBehaviour
 	protected Transform SpawnPoint;
 	public GameObject Bullet;
 	public AudioClip Sound;
-	public AmmoSystem ammoSystem;
+	public AmmoManager ammo;
 
 	public virtual void Start ()
 	{

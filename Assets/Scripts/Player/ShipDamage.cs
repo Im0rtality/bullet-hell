@@ -22,17 +22,4 @@ public class ShipDamage : MonoBehaviour
 			transform.GetComponent<Renderer> ().material = originalMaterial;
 		}
 	}
-
-	void OnTriggerEnter (Collider other)
-	{
-		switch (other.tag) {
-		case "Asteroid":
-		case "Enemy":
-		case "EnemyBullet":
-			lastBump = Time.realtimeSinceStartup;
-			GameController.gameOver = true;
-			//Object.Destroy (other.gameObject);
-			break;				
-		}
-	}
 }
