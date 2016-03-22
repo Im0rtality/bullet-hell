@@ -6,17 +6,30 @@ public class HitPointsManager : MonoBehaviour
 {
 	public Image indicator;
 	public Text text;
+	private float maxHp = 1;
+	private float currentHp = 1;
+	public Observer observerMaxHp;
+	public Observer observerCurrentHp;
 
-	private float level;
+	void Start ()
+	{
+		observerMaxHp = new Observer (UpdateMaxHp);
+		observerCurrentHp = new Observer (UpdateCurrentHp);
+	}
 
 	void Update ()
 	{
-		indicator.fillAmount = level;
-		text.text = Mathf.RoundToInt (level * 100f).ToString();
+		indicator.fillAmount = currentHp / maxHp;
+		text.text = Mathf.RoundToInt (currentHp / maxHp * 100f).ToString ();
 	}
 
-	public void LevelChange (float newLevel)
+	void UpdateMaxHp (BuffableProperty value)
 	{
-		level = newLevel;
+		maxHp = value.Value;
+	}
+
+	void UpdateCurrentHp (BuffableProperty value)
+	{
+		currentHp = value.Value;
 	}
 }

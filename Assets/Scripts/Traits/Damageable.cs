@@ -19,7 +19,7 @@ public class Damageable : MonoBehaviour
 	void OnTriggerEnter (Collider other)
 	{
 		if (triggeringTags.IndexOf (other.tag) >= 0) {
-			setHitPoints (Mathf.Clamp (hitPoints - other.gameObject.GetComponent<Damaging> ().damage, 0, maxHitpoints));
+			addHitPoints (-other.gameObject.GetComponent<Damaging> ().damage);
 
 			if (explosion) {
 				Instantiate (explosion, transform.position, transform.rotation);
@@ -36,12 +36,13 @@ public class Damageable : MonoBehaviour
 	}
 
 
-	void setHitPoints (float value)
+	public void setHitPoints (float value)
 	{
 		hitPoints = value;
+	}
 
-		if (hp) {
-			hp.LevelChange (hitPoints / maxHitpoints);
-		}
+	public void addHitPoints (float value)
+	{
+		setHitPoints (Mathf.Clamp (hitPoints + value, 0, maxHitpoints));
 	}
 }

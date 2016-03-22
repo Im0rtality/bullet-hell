@@ -15,7 +15,8 @@ public class Salvo: Weapon
 
 	public override void AfterFire ()
 	{
-		nextFire = Time.time + Cooldown;
+		Random.seed = Random.Range(0, 999999);
+		nextFire = Time.time + Cooldown + Random.Range (0f, Cooldown * 0.1f);
 	}
 
 	public override void InstantiateBullets ()

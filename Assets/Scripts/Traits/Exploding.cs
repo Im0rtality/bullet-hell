@@ -10,7 +10,8 @@ public class Exploding : MonoBehaviour
 	void OnKilled ()
 	{
 		if (explosion != null) {
-			Instantiate (explosion, transform.position, transform.rotation);
+			GameObject explObj = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
+			Destroy (explObj, 5f);
 		}
 
 		if (sound != null) {
