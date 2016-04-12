@@ -21,7 +21,7 @@ public class StatusEffectManager : MonoBehaviour
 		RedrawGlyphs ();
 	}
 
-	void FixedUpdate ()
+	void Update ()
 	{
 		Text[] texts = guiContainer.GetComponentsInChildren<Text> ();
 //		if (effects.RemoveAll (effect => effect.Remaining () < 0) > 0) {
