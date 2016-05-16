@@ -33,7 +33,6 @@ public class Repair : IBuff2
 
 	public float Modifier ()
 	{
-		Debug.Log (Time.fixedTime);
 		if (Time.fixedTime > nextApply) {
 			nextApply = Time.time + interval;
 			return amount;

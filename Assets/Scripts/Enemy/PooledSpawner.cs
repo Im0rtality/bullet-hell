@@ -9,6 +9,8 @@ public class PooledSpawner : MonoBehaviour
 	public float area = 0;
 	public GameObject objBase;
 	public bool initialSpawn;
+	public bool respawn = true;
+	public DynamicDifficultyManager levelUpMgr;
 
 	private List<GameObject> pool = new List<GameObject> ();
 
@@ -26,15 +28,21 @@ public class PooledSpawner : MonoBehaviour
 
 	void Spawn ()
 	{
-		pool.RemoveAll (obj => obj == null);
-		if (pool.Count < poolSize) {
+		int count = pool.RemoveAll (obj => obj == null);
+		if (levelUpMgr) {
+			for (int i = 0; i < count; i++) {
+				levelUpMgr.PoolObjectDestroyed ();
+			}
+		}
+		if (pool.Count < poolSize && respawn) {
 			AddObjectToPool ();
 		}
 	}
 
 	void AddObjectToPool ()
 	{
-		Vector3 spawnPosition = area * Random.insideUnitSphere + transform.position;
+		GameObject player = GameObject.Find ("Player");
+		Vector3 spawnPosition = area * Random.insideUnitSphere + (player ? player.transform.position : new Vector3());
 		spawnPosition.z = Mathf.Clamp (spawnPosition.z, transform.position.z - 2f, transform.position.z + 2f);
 		GameObject obj = Instantiate (objBase, spawnPosition, transform.rotation) as GameObject;
 		pool.Add (obj);

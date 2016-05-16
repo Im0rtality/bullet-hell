@@ -11,7 +11,10 @@ public class SimpleManeuver : MonoBehaviour
 	void FixedUpdate ()
 	{
 		if (!hasDestination) {
-			destination = transform.position + Random.insideUnitSphere * range;
+			GameObject player = GameObject.Find ("Player");
+			destination = Random.insideUnitSphere * range + (player ? player.transform.position : new Vector3 (0, 0, 0));
+
+			destination.Set (destination.x, destination.y, Mathf.Clamp (destination.z, 5.0f, 15.0f));
 			hasDestination = true;
 			StartCoroutine ("PerformManeuver");
 		}
@@ -20,9 +23,23 @@ public class SimpleManeuver : MonoBehaviour
 	IEnumerator PerformManeuver ()
 	{
 		while (Vector3.Distance (destination, transform.position) > 0.5f) {
-			transform.position = Vector3.MoveTowards (transform.position, destination, speed);
+			GameObject player = GameObject.Find ("Player");
+
+			transform.position = Vector3.MoveTowards (transform.position, destination, speed * calculateD());
+
 			yield return new WaitForFixedUpdate ();
 		}
 		hasDestination = false;
+	}
+
+	float calculateD() {
+		float d = 1f;
+		GameObject player = GameObject.Find ("Player");
+		if (player) {
+			d = Mathf.Clamp(Mathf.Log(Vector3.Distance (player.transform.position, transform.position)), 1, 5);
+		}
+
+		return d;
+
 	}
 }

@@ -8,6 +8,11 @@ public class NonStopFire : GunController
 
 	void Start ()
 	{
-		InvokeRepeating ("Fire", delay, fireRate);
+		InvokeRepeating ("ScheduleFire", delay, fireRate);
+	}
+
+	void ScheduleFire()
+	{
+		Invoke ("Fire", fireRate * Random.Range(0.5f, 1.5f));
 	}
 }

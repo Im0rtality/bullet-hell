@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
 //		InvokeRepeating ("CountAsteroids", 0, 4);
 		ScoreManager.score = 0;
 		gameOver = false;
+		GetComponent<AudioSource> ().Play ();
 	}
 
 	void Update ()
