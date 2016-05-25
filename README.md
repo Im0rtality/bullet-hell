@@ -1,5 +1,3 @@
-# bullet-hell-3d
+# Space Invaders 2k
 
-Prototype of Bullet hell game in 3d environment.
-
-Abandoned due to major gameplay issue - reading Bullet patterns is very hard in 3d (most of the time you would just see wall of bullets and no holes). Genre would require serious adaptation.
+Prototype of Bullet hell/space invaders game in 3d environment.
